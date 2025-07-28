@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fun Questionnaire & Instant Video</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="container">
+    <!-- Question 1 -->
+    <section id="question1" class="question active">
+      <h2>🎉 Where are you from?</h2>
+      <label class="custom-radio">
+        <input type="radio" name="country" value="Sudan" />
+        Sudan
+      </label>
+      <label class="custom-radio">
+        <input type="radio" name="country" value="Yemen" />
+        Yemen
+      </label>
+      <label class="custom-radio">
+        <input type="radio" name="country" value="Afghanistan" />
+        Afghanistan
+      </label>
+    </section>
+
+    <!-- Question 2 -->
+    <section id="question2" class="question">
+      <h2>📚 Where do you study?</h2>
+      <label class="custom-radio">
+        <input type="radio" name="studyCountry" value="Kazakhstan" />
+        Kazakhstan
+      </label>
+    </section>
+
+    <!-- Question 3 -->
+    <section id="question3" class="question">
+      <h2>🏫 Which university?</h2>
+      <label class="custom-radio">
+        <input type="radio" name="university" value="Al-Farabi Kazakh National University" />
+        Al-Farabi Kazakh National University
+      </label>
+    </section>
+
+    <!-- Video Section -->
+    <section id="videoSection" class="question">
+      <h2>▶️ Enjoy Your Video!</h2>
+      <video id="finalVideo" autoplay playsinline>
+        <source src="fdf.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
