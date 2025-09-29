@@ -1,62 +1,1800 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>المفاجاة الكبرى</title>
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psychology Seminar: Motives, Needs & Emotional-Volitional Sphere</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #5d6afb;
+            --primary-dark: #4a59e9;
+            --secondary: #ff7eb3;
+            --accent: #42e2b8;
+            --light: #f8faff;
+            --dark: #2c3a5c;
+            --text: #4a5568;
+            --success: #4cd964;
+            --warning: #ffcc00;
+            --danger: #ff3b30;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --hover-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f0f4ff 0%, #e6eeff 100%);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+        
+        .presentation-wrapper {
+            width: 100%;
+            max-width: 1200px;
+            height: 675px; /* 16:9 aspect ratio */
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .container {
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        header {
+            text-align: center;
+            padding: 15px 0;
+            margin-bottom: 10px;
+        }
+        
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text);
+            font-weight: 400;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+        
+        .presentation-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: white;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+        
+        .slide-container {
+            flex: 1;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 30px;
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.6s, transform 0.6s;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .slide.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .slide-header {
+            margin-bottom: 25px;
+        }
+        
+        .slide-title {
+            color: var(--dark);
+            font-size: 1.8rem;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .slide-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+        
+        .slide-content {
+            flex: 1;
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .text-content {
+            flex: 1;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            padding: 10px;
+            overflow-y: auto;
+            max-height: 100%;
+        }
+        
+        .graphic-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background: var(--light);
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .nav-btn {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(93, 106, 251, 0.3);
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(93, 106, 251, 0.4);
+        }
+        
+        .nav-btn:active {
+            transform: translateY(0);
+        }
+        
+        .nav-btn:disabled {
+            background: #cccccc;
+            box-shadow: none;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .slide-indicators {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #d1d8ff;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .indicator.active {
+            background: var(--primary);
+            transform: scale(1.2);
+        }
+        
+        .indicator::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .indicator.active::after {
+            border-color: var(--primary);
+        }
+        
+        .progress-bar {
+            height: 4px;
+            background: #e6e9ff;
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 0 20px;
+            flex: 1;
+            max-width: 300px;
+        }
+        
+        .progress {
+            height: 100%;
+            background: var(--gradient);
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.5s;
+        }
+        
+        /* Psychology-themed graphics */
+        .brain-animation {
+            width: 280px;
+            height: 280px;
+            position: relative;
+        }
+        
+        .brain {
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,15 C30,15 15,30 15,50 C15,70 30,85 50,85 C70,85 85,70 85,50 C85,30 70,15 50,15 Z" fill="%235d6afb" opacity="0.1"/><path d="M50,20 C32,20 20,32 20,50 C20,68 32,80 50,80 C68,80 80,68 80,50 C80,32 68,20 50,20 Z" fill="%235d6afb" opacity="0.2"/><path d="M50,25 C34,25 25,34 25,50 C25,66 34,75 50,75 C66,75 75,66 75,50 C75,34 66,25 50,25 Z" fill="%235d6afb" opacity="0.3"/><path d="M50,30 C36,30 30,36 30,50 C30,64 36,70 50,70 C64,70 70,64 70,50 C70,36 64,30 50,30 Z" fill="%235d6afb" opacity="0.5"/><path d="M50,35 C38,35 35,38 35,50 C35,62 38,65 50,65 C62,65 65,62 65,50 C65,38 62,35 50,35 Z" fill="%235d6afb" opacity="0.7"/><path d="M50,40 C40,40 40,40 40,50 C40,60 40,60 50,60 C60,60 60,60 60,50 C60,40 60,40 50,40 Z" fill="%235d6afb"/></svg>') no-repeat center;
+            background-size: contain;
+            animation: pulse 3s infinite;
+        }
+        
+        .needs-cycle {
+            width: 280px;
+            height: 280px;
+            position: relative;
+        }
+        
+        .cycle-step {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            animation: float 6s infinite ease-in-out;
+            z-index: 2;
+            font-size: 0.9rem;
+        }
+        
+        .cycle-connector {
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background: var(--primary);
+            z-index: 1;
+            transform-origin: left center;
+        }
+        
+        .connector-arrow {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-top: 3px solid var(--primary);
+            border-right: 3px solid var(--primary);
+            transform: rotate(45deg);
+        }
+        
+        .step-1 {
+            background: var(--primary);
+            top: 30px;
+            left: 100px;
+            animation-delay: 0s;
+        }
+        
+        .step-2 {
+            background: var(--secondary);
+            top: 100px;
+            left: 180px;
+            animation-delay: 0.5s;
+        }
+        
+        .step-3 {
+            background: var(--accent);
+            top: 180px;
+            left: 100px;
+            animation-delay: 1s;
+        }
+        
+        .step-4 {
+            background: var(--success);
+            top: 100px;
+            left: 20px;
+            animation-delay: 1.5s;
+        }
+        
+        .connector-1 {
+            top: 70px;
+            left: 130px;
+            transform: rotate(0deg);
+        }
+        
+        .connector-2 {
+            top: 140px;
+            left: 140px;
+            transform: rotate(90deg);
+        }
+        
+        .connector-3 {
+            top: 210px;
+            left: 130px;
+            transform: rotate(180deg);
+        }
+        
+        .connector-4 {
+            top: 140px;
+            left: 20px;
+            transform: rotate(270deg);
+        }
+        
+        .arrow-1 {
+            top: 65px;
+            left: 225px;
+        }
+        
+        .arrow-2 {
+            top: 210px;
+            left: 225px;
+            transform: rotate(135deg);
+        }
+        
+        .arrow-3 {
+            top: 210px;
+            left: 50px;
+            transform: rotate(225deg);
+        }
+        
+        .arrow-4 {
+            top: 65px;
+            left: 50px;
+            transform: rotate(315deg);
+        }
+        
+        .maslow-pyramid {
+            width: 300px;
+            height: 250px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .pyramid-level {
+            width: 0;
+            height: 0;
+            border-left: 70px solid transparent;
+            border-right: 70px solid transparent;
+            border-bottom: 35px solid;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.8rem;
+            position: relative;
+            transition: all 0.5s;
+            cursor: pointer;
+        }
+        
+        .pyramid-level:hover {
+            transform: translateY(-5px);
+        }
+        
+        .level-5 {
+            border-bottom-color: #5d6afb;
+            z-index: 1;
+        }
+        
+        .level-4 {
+            border-bottom-color: #6d7afb;
+            z-index: 2;
+        }
+        
+        .level-3 {
+            border-bottom-color: #7d8afb;
+            z-index: 3;
+        }
+        
+        .level-2 {
+            border-bottom-color: #8d9afb;
+            z-index: 4;
+        }
+        
+        .level-1 {
+            border-bottom-color: #9daafb;
+            z-index: 5;
+        }
+        
+        .level-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            text-align: center;
+        }
+        
+        .motive-types {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            width: 100%;
+        }
+        
+        .motive-card {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s;
+            border-left: 4px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .motive-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient);
+        }
+        
+        .motive-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+        }
+        
+        .motive-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--dark);
+            font-size: 1rem;
+        }
+        
+        .emotion-will-balance {
+            width: 280px;
+            height: 200px;
+            position: relative;
+        }
+        
+        .balance-base {
+            width: 180px;
+            height: 8px;
+            background: var(--dark);
+            position: absolute;
+            top: 160px;
+            left: 50px;
+            border-radius: 4px;
+        }
+        
+        .balance-pillar {
+            width: 6px;
+            height: 130px;
+            background: var(--dark);
+            position: absolute;
+            top: 30px;
+            left: 139px;
+            border-radius: 3px;
+        }
+        
+        .balance-beam {
+            width: 220px;
+            height: 5px;
+            background: var(--dark);
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            transform-origin: center;
+            transition: transform 1s ease-in-out;
+            border-radius: 3px;
+        }
+        
+        .balance-weight {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            transition: all 1s ease-in-out;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .emotion-weight {
+            background: var(--secondary);
+            top: 50px;
+            left: 45px;
+        }
+        
+        .will-weight {
+            background: var(--primary);
+            top: 50px;
+            right: 45px;
+        }
+        
+        .discussion-questions {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+        }
+        
+        .question-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        
+        .question-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+        }
+        
+        .question-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .question-text {
+            flex: 1;
+            font-size: 0.9rem;
+        }
+        
+        .psychology-icon {
+            font-size: 4rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .psychology-icon.secondary {
+            color: var(--secondary);
+        }
+        
+        .psychology-icon.accent {
+            color: var(--accent);
+        }
+        
+        .icon-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 15px;
+        }
+        
+        .icon-with-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .icon-label {
+            margin-top: 8px;
+            font-weight: 500;
+            color: var(--dark);
+            font-size: 0.9rem;
+        }
+        
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 15s infinite linear;
+        }
+        
+        .floating-1 {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+        
+        .floating-2 {
+            width: 50px;
+            height: 50px;
+            background: var(--secondary);
+            top: 70%;
+            left: 10%;
+            animation-delay: 1s;
+        }
+        
+        .floating-3 {
+            width: 80px;
+            height: 80px;
+            background: var(--accent);
+            top: 20%;
+            right: 5%;
+            animation-delay: 2s;
+        }
+        
+        .floating-4 {
+            width: 60px;
+            height: 60px;
+            background: var(--success);
+            top: 80%;
+            right: 10%;
+            animation-delay: 3s;
+        }
+        
+        /* Animations */
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(180deg); }
+            100% { transform: translateY(0) rotate(360deg); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-20px);}
+            60% {transform: translateY(-10px);}
+        }
+        
+        @keyframes pulse-glow {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(93, 106, 251, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(93, 106, 251, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(93, 106, 251, 0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s forwards;
+        }
+        
+        .slide-in-left {
+            animation: slideInLeft 0.8s forwards;
+        }
+        
+        .slide-in-right {
+            animation: slideInRight 0.8s forwards;
+        }
+        
+        .bounce {
+            animation: bounce 2s infinite;
+        }
+        
+        .pulse-glow {
+            animation: pulse-glow 2s infinite;
+        }
+        
+        /* Interactive elements */
+        .interactive-brain {
+            width: 260px;
+            height: 260px;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .brain-region {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--primary);
+            opacity: 0.7;
+            transition: all 0.3s;
+        }
+        
+        .brain-region:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        
+        .region-1 {
+            width: 70px;
+            height: 70px;
+            top: 50px;
+            left: 95px;
+            background: var(--primary);
+        }
+        
+        .region-2 {
+            width: 60px;
+            height: 60px;
+            top: 130px;
+            left: 70px;
+            background: var(--secondary);
+        }
+        
+        .region-3 {
+            width: 60px;
+            height: 60px;
+            top: 130px;
+            right: 70px;
+            background: var(--accent);
+        }
+        
+        .region-4 {
+            width: 50px;
+            height: 50px;
+            top: 70px;
+            right: 90px;
+            background: var(--success);
+        }
+        
+        .motivation-chart {
+            width: 100%;
+            height: 180px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .chart-bar {
+            width: 50px;
+            background: var(--gradient);
+            border-radius: 5px 5px 0 0;
+            position: relative;
+            transition: height 1s ease-in-out;
+        }
+        
+        .chart-label {
+            position: absolute;
+            bottom: -25px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-weight: 500;
+            color: var(--dark);
+            font-size: 0.8rem;
+        }
+        
+        /* Motion graphics */
+        .particles-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--primary);
+            opacity: 0.3;
+            animation: float 8s infinite linear;
+        }
+        
+        /* Thank you slide specific styles */
+        .thank-you-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .thank-you-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: pulse-glow 3s infinite;
+        }
+        
+        .thank-you-subtitle {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 30px;
+            animation: fadeIn 2s forwards;
+            animation-delay: 0.5s;
+            opacity: 0;
+        }
+        
+        .thank-you-icons {
+            display: flex;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .thank-you-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            animation: bounce 3s infinite;
+        }
+        
+        .thank-you-icon:nth-child(2) {
+            color: var(--secondary);
+            animation-delay: 0.5s;
+        }
+        
+        .thank-you-icon:nth-child(3) {
+            color: var(--accent);
+            animation-delay: 1s;
+        }
+        
+        /* Text alignment improvements */
+        .text-content ul, .text-content ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .text-content li {
+            margin-bottom: 8px;
+        }
+        
+        .text-content h3 {
+            margin: 15px 0 10px 0;
+            color: var(--dark);
+            font-size: 1.2rem;
+        }
+        
+        .text-content p {
+            margin-bottom: 15px;
+        }
+        
+        .slide-content .text-content, .slide-content .graphic-content {
+            padding: 15px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1100px) {
+            .slide-content {
+                flex-direction: column;
+                gap: 25px;
+            }
+            
+            .graphic-content {
+                order: -1;
+                margin-bottom: 15px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .slide-title {
+                font-size: 1.5rem;
+            }
+            
+            .presentation-wrapper {
+                height: 750px;
+            }
+            
+            .thank-you-title {
+                font-size: 2.5rem;
+            }
+            
+            .thank-you-subtitle {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .slide-container {
+                padding: 20px;
+            }
+            
+            .motive-types {
+                grid-template-columns: 1fr;
+            }
+            
+            .brain-animation, .needs-cycle, .maslow-pyramid, .emotion-will-balance {
+                transform: scale(0.8);
+            }
+            
+            .icon-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .presentation-wrapper {
+                height: 800px;
+            }
+            
+            .thank-you-title {
+                font-size: 2rem;
+            }
+            
+            .thank-you-subtitle {
+                font-size: 1rem;
+            }
+            
+            .thank-you-icons {
+                gap: 15px;
+            }
+            
+            .thank-you-icon {
+                font-size: 2rem;
+            }
+        }
+        
+        /* Scrollbar styling */
+        .text-content::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .text-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .text-content::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+        
+        .text-content::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+    </style>
 </head>
 <body>
-  <main class="container">
-    <!-- Question 1 -->
-    <section id="question1" class="question active">
-      <h2>🎉 Where are you from?</h2>
-      <label class="custom-radio">
-        <input type="radio" name="country" value="Sudan" />
-        Sudan
-      </label>
-      <label class="custom-radio">
-        <input type="radio" name="country" value="Yemen" />
-        Yemen
-      </label>
-      <label class="custom-radio">
-        <input type="radio" name="country" value="Afghanistan" />
-        Afghanistan
-      </label>
-      <label class="custom-radio">
-        <input type="radio" name="country" value="Afghanistan" />
-        Eygpt
-      </label>
-    </section>
+    <div class="presentation-wrapper">
+        <div class="container">
+            <header>
+                <h1>Psychology Seminar: Session 1</h1>
+                <p class="subtitle">Exploring the Driving Forces Within: Motives, Needs & Emotional-Volitional Sphere</p>
+            </header>
+            
+            <div class="presentation-area">
+                <div class="slide-container">
+                    <div class="floating-elements">
+                        <div class="floating-element floating-1"></div>
+                        <div class="floating-element floating-2"></div>
+                        <div class="floating-element floating-3"></div>
+                        <div class="floating-element floating-4"></div>
+                    </div>
+                    
+                    <!-- Slide 1: Title -->
+                    <div class="slide active" id="slide-1">
+                        <div class="slide-header">
+                            <h2 class="slide-title">The Driving Forces Within</h2>
+                        </div>
+                        <div class="slide-content">
+                            <div class="text-content slide-in-left">
+                                <p>Welcome to our exploration of the internal forces that shape human behavior and personality. Understanding these psychological mechanisms provides crucial insight into what makes us who we are.</p>
+                                <p>In this seminar, we'll examine the complex interplay between:</p>
+                                <ul>
+                                    <li><strong>Motives and Needs</strong> - The fundamental drivers of behavior</li>
+                                    <li><strong>Types of Motives</strong> - The different categories of human drives</li>
+                                    <li><strong>Hierarchy of Motives</strong> - Maslow's pyramid of human motivation</li>
+                                    <li><strong>Emotional-Volitional Sphere</strong> - The interplay between feeling and will</li>
+                                </ul>
+                                <p>Prepare to journey into the fascinating landscape of human psychology!</p>
+                            </div>
+                            <div class="graphic-content slide-in-right">
+                                <div class="interactive-brain">
+                                    <div class="brain-region region-1" title="Prefrontal Cortex - Decision Making"></div>
+                                    <div class="brain-region region-2" title="Limbic System - Emotions"></div>
+                                    <div class="brain-region region-3" title="Amygdala - Fear Response"></div>
+                                    <div class="brain-region region-4" title="Hippocampus - Memory"></div>
+                                    <div class="brain"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 2: Introduction to Psychology of Motivation -->
+                    <div class="slide" id="slide-2">
+                        <div class="slide-header">
+                            <h2 class="slide-title">Psychology of Motivation</h2>
+                        </div>
+                        <div class="slide-content">
+                            <div class="text-content slide-in-left">
+                                <p>Motivation is the psychological process that initiates, guides, and maintains goal-oriented behaviors. It's the internal condition that activates behavior and gives it direction.</p>
+                                
+                                <h3>Key Concepts:</h3>
+                                <ul>
+                                    <li><strong>Drive:</strong> An internal state of tension that motivates an organism to engage in activities that reduce this tension</li>
+                                    <li><strong>Incentive:</strong> An external goal that has the capacity to motivate behavior</li>
+                                    <li><strong>Motive:</strong> A specific internal factor that energizes and directs behavior</li>
+                                    <li><strong>Need:</strong> An internal deficiency that may energize behavior</li>
+                                </ul>
+                                
+                                <p>Understanding motivation helps explain why we do what we do, and why we persist in some behaviors while abandoning others.</p>
+                            </div>
+                            <div class="graphic-content slide-in-right">
+                                <div style="text-align: center;">
+                                    <i class="fas fa-brain psychology-icon"></i>
+                                    <p style="font-weight: 500; color: var(--dark);">The Mind's Engine</p>
+                                    <div class="motivation-chart">
+                                        <div class="chart-bar" style="height: 100px;">
+                                            <div class="chart-label">Biological</div>
+                                        </div>
+                                        <div class="chart-bar" style="height: 140px;">
+                                            <div class="chart-label">Emotional</div>
+                                        </div>
+                                        <div class="chart-bar" style="height: 80px;">
+                                            <div class="chart-label">Social</div>
+                                        </div>
+                                        <div class="chart-bar" style="height: 120px;">
+                                            <div class="chart-label">Cognitive</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 3: Motives and Needs -->
+                    <div class="slide" id="slide-3">
+                        <div class="slide-header">
+                            <h2 class="slide-title">Motives and Needs: The Foundation</h2>
+                        </div>
+                        <div class="slide-content">
+                            <div class="text-content slide-in-left">
+                                <h3>Needs</h3>
+                                <p>A <strong>need</strong> is a state of deficiency or lack of something required for well-being and survival.</p>
+                                <ul>
+                                    <li>Creates tension or disequilibrium (homeostatic imbalance)</li>
+                                    <li>Goal is to reduce this tension (homeostatic principle)</li>
+                                    <li>Can be physiological (primary) or psychological (secondary)</li>
+                                    <li>Examples: Thirst, hunger, sleep, need for achievement</li>
+                                </ul>
+                                
+                                <h3>Motives</h3>
+                                <p>A <strong>motive</strong> is an internal disposition that drives, directs, and selects behavior toward a specific goal.</p>
+                                <ul>
+                                    <li><strong>Energizing:</strong> Provides drive to act</li>
+                                    <li><strong>Directive:</strong> Guides behavior toward goal</li>
+                                    <li><strong>Persistent:</strong> Continues until goal is achieved</li>
+                                    <li><strong>Selective:</strong> Focuses behavior on specific goals</li>
+                                </ul>
+                                
+                                <p><strong>Relationship:</strong> Need → Drive (Motive) → Goal-Directed Behavior → Need Satisfaction</p>
+                            </div>
+                            <div class="graphic-content slide-in-right">
+                                <div class="needs-cycle">
+                                    <div class="cycle-step step-1">Need</div>
+                                    <div class="cycle-connector connector-1"></div>
+                                    <div class="connector-arrow arrow-1"></div>
+                                    
+                                    <div class="cycle-step step-2">Motive</div>
+                                    <div class="cycle-connector connector-2"></div>
+                                    <div class="connector-arrow arrow-2"></div>
+                                    
+                                    <div class="cycle-step step-3">Behavior</div>
+                                    <div class="cycle-connector connector-3"></div>
+                                    <div class="connector-arrow arrow-3"></div>
+                                    
+                                    <div class="cycle-step step-4">Satisfaction</div>
+                                    <div class="cycle-connector connector-4"></div>
+                                    <div class="connector-arrow arrow-4"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 4: Types of Motives - Primary vs Secondary -->
+                    <div class="slide" id="slide-4">
+                        <div class="slide-header">
+                            <h2 class="slide-title">Types of Motives: Primary vs Secondary</h2>
+                        </div>
+                        <div class="slide-content">
+                            <div class="text-content slide-in-left">
+                                <p>Motives can be classified in several ways. One fundamental distinction is between primary and secondary motives.</p>
+                                
+                                <div class="motive-types">
+                                    <div class="motive-card">
+                                        <div class="motive-title">Primary Motives (Biological)</div>
+                                        <p>Unlearned, biological needs essential for physical survival.</p>
+                                        <ul>
+                                            <li>Hunger</li>
+                                            <li>Thirst</li>
+                                            <li>Sleep</li>
+                                            <li>Temperature regulation</li>
+                                            <li>Pain avoidance</li>
+                                            <li>Oxygen needs</li>
+                                        </ul>
+                                        <p>These are universal across species and cultures.</p>
+                                    </div>
+                                    
+                                    <div class="motive-card">
+                                        <div class="motive-title">Secondary Motives (Social)</div>
+                                        <p>Learned through experience and socialization.</p>
+                                        <ul>
+                                            <li>Need for Achievement (n-Ach)</li>
+                                            <li>Need for Affiliation (n-Aff)</li>
+                                            <li>Need for Power (n-Pow)</li>
+                                            <li>Curiosity</li>
+                                            <li>Play</li>
+                                            <li>Aggression</li>
+                                        </ul>
+                                        <p>These vary across cultures and individuals.</p>
+                                    </div>
+                                </div>
+                                
+                                <p style="margin-top: 20px;">While primary motives are fundamental, secondary motives often play a more significant role in complex human behavior and social interactions.</p>
+                            </div>
+                            <div class="graphic-content slide-in-right">
+                                <div style="text-align: center; width: 100%;">
+                                    <div class="icon-container">
+                                        <div class="icon-with-label">
+                                            <i class="fas fa-apple-alt psychology-icon"></i>
+                                            <div class="icon-label">Biological Needs</div>
+                                        </div>
+                                        <div class="icon-with-label">
+                                            <i class="fas fa-handshake psychology-icon secondary"></i>
+                                            <div class="icon-label">Social Needs</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 5: Types of Motives - Conscious vs Unconscious -->
+                    <div class="slide" id="slide-5">
+                        <div class="slide-header">
+                            <h2 class="slide-title">Types of Motives: Conscious vs Unconscious</h2>
+                        </div>
+                        <div class="slide-content">
+                            <div class="text-content slide-in-left">
+                                <p>Another important distinction is between motives we're aware of and those that operate outside our conscious awareness.</p>
+                                
+                                <div class="motive-types">
+                                    <div class="motive-card">
+                                        <div class="motive-title">Conscious Motives</div>
+                                        <p>Motives we are aware of and can verbally articulate.</p>
+                                        <p><strong>Example:</strong> "I am studying hard because I want to get a good grade and pursue my career goals."</p>
+                                        <p>These motives are:</p>
+                                        <ul>
+                                            <li>Accessible to awareness</li>
+                                            <li>Verbalizable</li>
+                                            <li>Rational and logical</li>
+                                            <li>Aligned with self-concept</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="motive-card">
+                                        <div class="motive-title">Unconscious Motives</div>
+                                        <p>Motives that influence our behavior without our awareness.</p>
+                                        <p><strong>Example:</strong> A person who constantly seeks approval may be unconsciously motivated by a deep-seated fear of abandonment from childhood.</p>
+                                        <p>These motives are:</p>
+                                        <ul>
+                                            <li>Outside conscious awareness</li>
+                                            <li>Often rooted in early experiences</li>
+                                            <li>May conflict with conscious motives</li>
+                                            <li>Revealed through dreams, slips, or therapy</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <p style="margin-top: 20px;">Much of human behavior is influenced by a combination of both conscious and unconscious motives.</p>
+                            </div>
+                            <div class="graphic-content slide-in-right">
+                                <div style="text-align: center; width: 100%;">
+                                    <div class="icon-container">
+                                        <div class="icon-with-label">
+                                            <i class="fas fa-eye psychology-icon"></i>
+                                            <div class="icon-label">Conscious</div>
+                                        </div>
+                                        <div class="icon-with-label">
+                                            <i class="fas fa-eye-slash psychology-icon secondary"></i>
+                                            <div class="icon-label">Unconscious</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 6: Types of Motives - Extrinsic vs Intrinsic -->
+                    <div class="slide" id="slide-6">
+                        <div class="slide-header">
+                            <h2 class="slide-title">Types of Motives: Extrinsic vs Intrinsic</h2>
+                        </div>
+                        <div class="slide-content">
+                            <div class="text-content slide-in-left">
+                                <p>One of the most important distinctions in motivation research is between extrinsic and intrinsic motivation.</p>
+                                
+                                <div class="motive-types">
+                                    <div class="motive-card">
+                                        <div class="motive-title">Extrinsic Motivation</div>
+                                        <p>Behavior is driven by <strong>external</strong> rewards or to avoid punishment.</p>
+                                        <p><strong>Examples:</strong></p>
+                                        <ul>
+                                            <li>Working for money</li>
+                                            <li>Studying to avoid parental disapproval</li>
+                                            <li>Cleaning your room to avoid an argument</li>
+                                            <li>Competing for trophies or recognition</li>
+                                        </ul>
+                                        <p>Extrinsic motivation comes from outside the individual.</p>
+                                    </div>
+                                    
+                                    <div class="motive-card">
+                                        <div class="motive-title">Intrinsic Motivation</div>
+                                        <p>Behavior is driven by <strong>internal</strong> rewards; the activity itself is enjoyable and satisfying.</p>
+                                        <p><strong>Examples:</strong></p>
+                                        <ul>
+                                            <li>Reading a book for pleasure</li>
+                                            <li>Solving a puzzle for the fun of it</li>
+                                            <li>Painting as a form of self-expression</li>
+                                            <li>Learning a new skill out of curiosity</li>
+                                        </ul>
+                                        <p>Intrinsic motivation comes from within the individual.</p>
+                                    </div>
+                                </div>
+                                
+                                <p style="margin-top: 20px;"><strong>Important Finding:</strong> Extrinsic rewards can sometimes undermine intrinsic motivation, a phenomenon known as the "overjustification effect."</p>
+                            </div>
+                            <div class="graphic-content slide-in-right">
+                                <div style="text-align: center; width: 100%;">
+                                    <div class="icon-container">
+                                        <div class="icon-with-label">
+                                            <i class="fas fa-award psychology-icon"></i>
+                                            <div class="icon-label">External Rewards</div>
+                                        </div>
+                                        <div class="icon-with-label">
+                                            <i class="fas fa-heart psychology-icon secondary"></i>
+                                            <div class="icon-label">Internal Satisfaction</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 7: Hierarchy of Motives -->
+                    <div class="slide" id="slide-7">
+                        <div class="slide-header">
+                            <h2 class="slide-title">Hierarchy of Motives: Maslow's Pyramid</h2>
+                        </div>
+                        <div class="slide-content">
+                            <div class="text-content slide-in-left">
+                                <p>Abraham Maslow proposed that motives are organized in a hierarchical order. Lower-level needs must be reasonably satisfied before higher-level needs become motivating.</p>
+                                
+                                <h3>The Pyramid (from bottom to top):</h3>
+                                <ol>
+                                    <li><strong>Physiological Needs:</strong> The base level - food, water, warmth, rest</li>
+                                    <li><strong>Safety Needs:</strong> Security, safety, stability, freedom from fear</li>
+                                    <li><strong>Love and Belongingness Needs:</strong> Intimate relationships, friends, family, sense of connection</li>
+                                    <li><strong>Esteem Needs:</strong> Feelings of accomplishment, prestige, respect from others and self-respect</li>
+                                    <li><strong>Self-Actualization Needs:</strong> The pinnacle - realizing one's full potential, self-fulfillment, pursuing personal growth and peak experiences</li>
+                                </ol>
+                                
+                                <h3>Key Insights:</h3>
+                                <ul>
+                                    <li><strong>Deficit vs. Growth Needs:</strong> The bottom four levels are "deficiency needs" (we are motivated by their absence). Self-actualization is a "growth need" (we are motivated to grow and become more).</li>
+                                    <li><strong>Not Rigid:</strong> The order can vary culturally and individually (e.g., an artist may prioritize self-expression over safety).</li>
+                                </ul>
+                            </div>
+                            <div class="graphic-content slide-in-right">
+                                <div class="maslow-pyramid">
+                                    <div class="pyramid-level level-1">
+                                        <div class="level-label">Self-Actualization</div>
+                                    </div>
+                                    <div class="pyramid-level level-2">
+                                        <div class="level-label">Esteem Needs</div>
+                                    </div>
+                                    <div class="pyramid-level level-3">
+                                        <div class="level-label">Love & Belonging</div>
+                                    </div>
+                                    <div class="pyramid-level level-4">
+                                        <div class="level-label">Safety Needs</div>
+                                    </div>
+                                    <div class="pyramid-level level-5">
+                                        <div class="level-label">Physiological Needs</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 8: Key Takeaways from Maslow -->
+                    <div class="slide" id="slide-8">
+                        <div class="slide-header">
+                            <h2 class="slide-title">Key Takeaways from Maslow's Hierarchy</h2>
+                        </div>
+                        <div class="slide-content">
+                            <div class="text-content slide-in-left">
+                                <h3>Deficiency Needs vs. Growth Needs</h3>
+                                <p>Maslow distinguished between two types of needs:</p>
+                                
+                                <div class="motive-types">
+                                    <div class="motive-card">
+                                        <div class="motive-title">Deficiency Needs (D-Needs)</div>
+                                        <p>The bottom four levels of the pyramid:</p>
+                                        <ul>
+                                            <li>Physiological</li>
+                                            <li>Safety</li>
+                                            <li>Love/Belonging</li>
+                                            <li>Esteem</li>
+                                        </ul>
+                                        <p>We are motivated by their <strong>absence</strong>. When these needs are not met, we feel their lack and are driven to fulfill them.</p>
+                                    </div>
+                                    
+                                    <div class="motive-card">
+                                        <div class="motive-title">Growth Needs (B-Needs)</div>
+                                        <p>The highest level of the pyramid:</p>
+                                        <ul>
+                                            <li>Self-Actualization</li>
+                                        </ul>
+                                        <p>We are motivated by the desire to <strong>grow</strong> as a person. These needs continue to be felt and may even become stronger once they are engaged.</p>
+                                    </div>
+                                </div>
+                                
+                                <h3 style="margin-top: 20px;">Critiques and Modern Perspectives</h3>
+                                <ul>
+                                    <li>The hierarchy is not rigid - cultural and individual differences exist</li>
+                                    <li>People may simultaneously work on multiple need levels</li>
+                                    <li>Some individuals prioritize higher needs over lower ones</li>
+                                    <li>The model has been expanded to include cognitive and aesthetic needs</li>
+                                </ul>
+                            </div>
+                            <div class="graphic-content slide-in-right">
+                                <div style="text-align: center; width: 100%;">
+                                    <i class="fas fa-seedling psychology-icon accent" style="font-size: 6rem;"></i>
+                                    <p style="font-weight: 500; color: var(--dark); font-size: 1.2rem; margin-top: 20px;">Growth & Self-Actualization</p>
+                                    <p style="margin-top: 10px;">The journey toward realizing one's potential</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 9: Emotional-Volitional Sphere -->
+                    <div class="slide" id="slide-9">
+                        <div class="slide-header">
+                            <h2 class="slide-title">Emotional-Volitional Sphere of Personality</h2>
+                        </div>
+                        <div class="slide-content">
+                            <div class="text-content slide-in-left">
+                                <p>This sphere encompasses the processes of experiencing, expressing, and regulating our feelings (emotions) and our conscious control over actions (volition).</p>
+                                
+                                <h3>The Emotional Component</h3>
+                                <p><strong>Emotion:</strong> A complex reaction pattern involving experiential, behavioral, and physiological elements. It is a temporary, intense state often triggered by a specific event.</p>
+                                <p><strong>Functions of Emotions:</strong></p>
+                                <ul>
+                                    <li><strong>Adaptive:</strong> Fear triggers a "fight-or-flight" response, aiding survival</li>
+                                    <li><strong>Social:</strong> Expressing joy, guilt, or anger communicates our state to others and regulates social interactions</li>
+                                    <li><strong>Motivational:</strong> Emotions create urgent goals for behavior (e.g., anxiety motivates avoidance, curiosity motivates exploration)</li>
+                                    <li><strong>Informational:</strong> Emotions provide information about our environment and our relationship to it</li>
+                                </ul>
+                                
+                                <h3>The Volitional (Will) Component</h3>
+                                <p><strong>Will / Volition:</strong> The conscious, deliberate capacity to initiate, sustain, and control our own behavior, especially in the face of distractions or contrary motives. It is the "executive function" of personality.</p>
+                            </div>
+                            <div class="graphic-content slide-in-right">
+                                <div style="text-align: center; width: 100%;">
+                                    <div class="icon-container">
+                                        <div class="icon-with-label">
+                                            <i class="fas fa-fire psychology-icon secondary" style="font-size: 4rem;"></i>
+                                            <p style="font-weight: bold; margin-bottom: 10px;">Emotion</p>
+                                            <p>The Fuel</p>
+                                        </div>
+                                        
+                                        <div class="icon-with-label">
+                                            <i class="fas fa-compass psychology-icon" style="font-size: 4rem;"></i>
+                                            <p style="font-weight: bold; margin-bottom: 10px;">Will</p>
+                                            <p>The Steering Wheel</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 10: Emotion vs. Will -->
+                    <div class="slide" id="slide-10">
+                        <div class="slide-header">
+                            <h2 class="slide-title">The Interplay: Emotion vs. Will</h2>
+                        </div>
+                        <div class="slide-content">
+                            <div class="text-content slide-in-left">
+                                <p>The emotional and volitional spheres are in constant dialogue, creating a dynamic system that guides our behavior.</p>
+                                
+                                <h3>Emotion Fuels Will</h3>
+                                <p>Strong positive emotions (passion, desire) can provide the energy for volitional acts.</p>
+                                <p><em>The motive (rooted in emotion) gives the will a direction.</em></p>
+                                
+                                <h3>Will Regulates Emotion</h3>
+                                <p>We use our willpower to manage our emotional responses. This is known as <strong>emotional regulation</strong>.</p>
+                                <p><em>Example: You feel angry (emotion) but use your willpower to count to ten and respond calmly instead of yelling.</em></p>
+                                
+                                <h3>The Classic Internal Conflict</h3>
+                                <p>A battle between short-term emotional desire and long-term volitional goal.</p>
+                                <p><em>Example: The emotion of craving a dessert vs. the willpower to stick to a diet for a long-term health goal.</em></p>
+                                
+                                <h3>Successful Integration</h3>
+                                <p>Psychological health involves balancing and integrating these two systems, not suppressing one in favor of the other.</p>
+                            </div>
+                            <div class="graphic-content slide-in-right">
+                                <div class="emotion-will-balance">
+                                    <div class="balance-base"></div>
+                                    <div class="balance-pillar"></div>
+                                    <div class="balance-beam" id="balanceBeam"></div>
+                                    <div class="balance-weight emotion-weight" id="emotionWeight">
+                                        <i class="fas fa-fire"></i>
+                                    </div>
+                                    <div class="balance-weight will-weight" id="willWeight">
+                                        <i class="fas fa-compass"></i>
+                                    </div>
+                                </div>
+                                <div style="text-align: center; margin-top: 20px;">
+                                    <button id="balanceControl" class="nav-btn"><i class="fas fa-adjust"></i> Show Conflict</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 11: Summary & Discussion -->
+                    <div class="slide" id="slide-11">
+                        <div class="slide-header">
+                            <h2 class="slide-title">Summary & Discussion</h2>
+                        </div>
+                        <div class="slide-content">
+                            <div class="text-content slide-in-left">
+                                <h3>Key Takeaways</h3>
+                                <ul>
+                                    <li><strong>Motives & Needs:</strong> Behavior is a cycle driven by needs and directed by motives.</li>
+                                    <li><strong>Types of Motives:</strong> They can be conscious/unconscious, intrinsic/extrinsic, and biological/social.</li>
+                                    <li><strong>Hierarchy:</strong> Human needs are structured, with basic needs forming the foundation for higher psychological growth.</li>
+                                    <li><strong>Emotional-Volitional Sphere:</strong> We are a dynamic system where feelings (emotion) and conscious control (will) interact to guide our actions.</li>
+                                </ul>
+                                
+                                <h3>Discussion Questions</h3>
+                                <div class="discussion-questions">
+                                    <div class="question-card">
+                                        <div class="question-icon">1</div>
+                                        <div class="question-text">
+                                            <p><strong>Analyze a recent personal goal:</strong> Can you identify the underlying needs and motives? Were they primarily intrinsic or extrinsic, conscious or unconscious?</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="question-card">
+                                        <div class="question-icon">2</div>
+                                        <div class="question-text">
+                                            <p><strong>Maslow in practice:</strong> Can you think of examples where someone bypassed lower needs in Maslow's hierarchy to pursue higher ones? What does this tell us about human motivation?</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="question-card">
+                                        <div class="question-icon">3</div>
+                                        <div class="question-text">
+                                            <p><strong>Emotion vs. Will:</strong> Describe a situation where you experienced a strong conflict between your emotions and your will. How did you resolve it? What was the outcome?</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="graphic-content slide-in-right">
+                                <div style="text-align: center;">
+                                    <i class="fas fa-star psychology-icon" style="font-size: 6rem;"></i>
+                                    <p style="font-weight: bold; font-size: 1.5rem; color: var(--dark); margin-top: 20px;">Thank You!</p>
+                                    <p style="margin-top: 10px; font-size: 1.1rem;">Questions & Discussion</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 12: Animated Thank You -->
+                    <div class="slide" id="slide-12">
+                        <div class="thank-you-content">
+                            <h1 class="thank-you-title">Thank You!</h1>
+                            <p class="thank-you-subtitle">For your attention and participation in this psychology seminar</p>
+                            <div class="thank-you-icons">
+                                <i class="fas fa-brain thank-you-icon"></i>
+                                <i class="fas fa-heart thank-you-icon"></i>
+                                <i class="fas fa-lightbulb thank-you-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="controls">
+                    <button class="nav-btn" id="prevBtn" disabled><i class="fas fa-chevron-left"></i> Previous</button>
+                    <div class="progress-bar">
+                        <div class="progress" id="progressBar"></div>
+                    </div>
+                    <div class="slide-info">Slide <span id="currentSlide">1</span> of <span id="totalSlides">12</span></div>
+                    <button class="nav-btn" id="nextBtn">Next <i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+            
+            <div class="slide-indicators">
+                <div class="indicator active" data-slide="0"></div>
+                <div class="indicator" data-slide="1"></div>
+                <div class="indicator" data-slide="2"></div>
+                <div class="indicator" data-slide="3"></div>
+                <div class="indicator" data-slide="4"></div>
+                <div class="indicator" data-slide="5"></div>
+                <div class="indicator" data-slide="6"></div>
+                <div class="indicator" data-slide="7"></div>
+                <div class="indicator" data-slide="8"></div>
+                <div class="indicator" data-slide="9"></div>
+                <div class="indicator" data-slide="10"></div>
+                <div class="indicator" data-slide="11"></div>
+            </div>
+        </div>
+    </div>
 
-    <!-- Question 2 -->
-    <section id="question2" class="question">
-      <h2>📚 Where do you study?</h2>
-      <label class="custom-radio">
-        <input type="radio" name="studyCountry" value="Kazakhstan" />
-        Kazakhstan
-      </label>
-    </section>
-
-    <!-- Question 3 -->
-    <section id="question3" class="question">
-      <h2>🏫 Which university?</h2>
-      <label class="custom-radio">
-        <input type="radio" name="university" value="Al-Farabi Kazakh National University" />
-        Al-Farabi Kazakh National University
-      </label>
-    </section>
-
-    <!-- Video Section -->
-    <section id="videoSection" class="question">
-      <h2>▶️ Enjoy Your Video!</h2>
-      <video id="finalVideo" autoplay playsinline>
-        <source src="fdf.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-    </section>
-  </main>
-
-  <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const indicators = document.querySelectorAll('.indicator');
+            const currentSlideEl = document.getElementById('currentSlide');
+            const totalSlidesEl = document.getElementById('totalSlides');
+            const progressBar = document.getElementById('progressBar');
+            const balanceControl = document.getElementById('balanceControl');
+            const balanceBeam = document.getElementById('balanceBeam');
+            const emotionWeight = document.getElementById('emotionWeight');
+            const willWeight = document.getElementById('willWeight');
+            
+            let currentSlideIndex = 0;
+            let balanceState = 'balanced';
+            
+            // Initialize
+            totalSlidesEl.textContent = slides.length;
+            updateProgressBar();
+            updateSlide();
+            
+            // Navigation functions
+            function goToSlide(index) {
+                if (index < 0 || index >= slides.length) return;
+                
+                slides[currentSlideIndex].classList.remove('active');
+                indicators[currentSlideIndex].classList.remove('active');
+                
+                currentSlideIndex = index;
+                
+                slides[currentSlideIndex].classList.add('active');
+                indicators[currentSlideIndex].classList.add('active');
+                currentSlideEl.textContent = currentSlideIndex + 1;
+                
+                // Update button states
+                prevBtn.disabled = currentSlideIndex === 0;
+                nextBtn.disabled = currentSlideIndex === slides.length - 1;
+                
+                // Update progress bar
+                updateProgressBar();
+                
+                // Add animation classes to content
+                animateSlideContent();
+                
+                // Special animations for specific slides
+                if (currentSlideIndex === 9) { // Emotion vs Will slide
+                    resetBalance();
+                }
+            }
+            
+            function updateProgressBar() {
+                const progress = ((currentSlideIndex + 1) / slides.length) * 100;
+                progressBar.style.width = `${progress}%`;
+            }
+            
+            function updateSlide() {
+                goToSlide(currentSlideIndex);
+            }
+            
+            function nextSlide() {
+                if (currentSlideIndex < slides.length - 1) {
+                    goToSlide(currentSlideIndex + 1);
+                }
+            }
+            
+            function prevSlide() {
+                if (currentSlideIndex > 0) {
+                    goToSlide(currentSlideIndex - 1);
+                }
+            }
+            
+            function animateSlideContent() {
+                const textContent = document.querySelector('.slide.active .text-content');
+                const graphicContent = document.querySelector('.slide.active .graphic-content');
+                
+                if (textContent) {
+                    textContent.classList.remove('slide-in-left');
+                    void textContent.offsetWidth; // Trigger reflow
+                    textContent.classList.add('slide-in-left');
+                }
+                
+                if (graphicContent) {
+                    graphicContent.classList.remove('slide-in-right');
+                    void graphicContent.offsetWidth; // Trigger reflow
+                    graphicContent.classList.add('slide-in-right');
+                }
+            }
+            
+            // Balance animation for Emotion vs Will slide
+            function toggleBalance() {
+                if (balanceState === 'balanced') {
+                    // Show emotion overpowering will
+                    balanceBeam.style.transform = 'rotate(-15deg)';
+                    emotionWeight.style.transform = 'translateY(20px)';
+                    willWeight.style.transform = 'translateY(-20px)';
+                    balanceControl.innerHTML = '<i class="fas fa-brain"></i> Show Will Power';
+                    balanceState = 'emotion';
+                } else if (balanceState === 'emotion') {
+                    // Show will overpowering emotion
+                    balanceBeam.style.transform = 'rotate(15deg)';
+                    emotionWeight.style.transform = 'translateY(-20px)';
+                    willWeight.style.transform = 'translateY(20px)';
+                    balanceControl.innerHTML = '<i class="fas fa-balance-scale"></i> Show Balance';
+                    balanceState = 'will';
+                } else {
+                    // Return to balanced state
+                    resetBalance();
+                }
+            }
+            
+            function resetBalance() {
+                balanceBeam.style.transform = 'rotate(0deg)';
+                emotionWeight.style.transform = 'translateY(0)';
+                willWeight.style.transform = 'translateY(0)';
+                balanceControl.innerHTML = '<i class="fas fa-adjust"></i> Show Conflict';
+                balanceState = 'balanced';
+            }
+            
+            // Event listeners
+            prevBtn.addEventListener('click', prevSlide);
+            nextBtn.addEventListener('click', nextSlide);
+            
+            indicators.forEach(indicator => {
+                indicator.addEventListener('click', function() {
+                    const slideIndex = parseInt(this.getAttribute('data-slide'));
+                    goToSlide(slideIndex);
+                });
+            });
+            
+            balanceControl.addEventListener('click', toggleBalance);
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowRight' || e.key === ' ') {
+                    nextSlide();
+                } else if (e.key === 'ArrowLeft') {
+                    prevSlide();
+                }
+            });
+            
+            // Interactive brain regions
+            const brainRegions = document.querySelectorAll('.brain-region');
+            brainRegions.forEach(region => {
+                region.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.1)';
+                    this.style.opacity = '1';
+                });
+                
+                region.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                    this.style.opacity = '0.7';
+                });
+            });
+            
+            // Create particles for motion graphics
+            function createParticles() {
+                const container = document.querySelector('.slide-container');
+                const particlesContainer = document.createElement('div');
+                particlesContainer.className = 'particles-container';
+                container.appendChild(particlesContainer);
+                
+                for (let i = 0; i < 15; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    
+                    const size = Math.random() * 10 + 5;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    
+                    const colors = [getComputedStyle(document.documentElement).getPropertyValue('--primary'), 
+                                   getComputedStyle(document.documentElement).getPropertyValue('--secondary'),
+                                   getComputedStyle(document.documentElement).getPropertyValue('--accent')];
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    particle.style.background = color;
+                    
+                    particle.style.left = `${Math.random() * 100}%`;
+                    particle.style.top = `${Math.random() * 100}%`;
+                    
+                    particle.style.animationDuration = `${Math.random() * 10 + 10}s`;
+                    particle.style.animationDelay = `${Math.random() * 5}s`;
+                    
+                    particlesContainer.appendChild(particle);
+                }
+            }
+            
+            createParticles();
+        });
+    </script>
 </body>
 </html>
